@@ -20,4 +20,18 @@ class StudentTest {
         s.addScore(85);
         assertEquals("A", s.grade());
     }
+
+    @Test
+    void testIsId(){
+        Student s = new Student("6610400000", "aaa");
+        boolean actual = s.isId("6610400000");
+        assertTrue(actual);
+    }
+
+    @Test
+    void testChangeName(){
+        Student s = new Student("6610400001", "bbb");
+        s.changeName("ccc");
+        assertEquals("ccc", s.getName());
+    }
 }
