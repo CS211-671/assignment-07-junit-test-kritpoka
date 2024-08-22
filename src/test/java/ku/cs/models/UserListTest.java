@@ -1,11 +1,21 @@
 package ku.cs.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserListTest {
+    UserList userList;
+
+    @BeforeEach     
+    void init(){
+        userList = new UserList();
+        userList.addUser("aaa", "111");
+        userList.addUser("bbb", "222");
+        userList.addUser("ccc", "333");
+    }
 
     @Test
     @DisplayName("User should be found in UserList")
@@ -13,11 +23,12 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: find one of them
-
+        User user = userList.findUserByUsername("aaa");
+        
         // TODO: assert that UserList found User
-        // String expected = "<one of username>";
-        // String actual = user.getUsername();
-        // assertEquals(expected, actual);
+         String expected = "aaa";
+         String actual = user.getUsername();
+         assertEquals(expected, actual);
     }
 
     @Test
@@ -26,9 +37,10 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: change password of one user
+        boolean actual = userList.changePassword("bbb", "111", "1234");
 
         // TODO: assert that user can change password
-        // assertTrue(actual);
+         assertTrue(actual);
     }
 
     @Test
@@ -37,9 +49,11 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: call login() with correct username and password
+        User actual = userList.login("ccc", "333");
 
         // TODO: assert that User object is found
-        // assertEquals(expected, actual);
+        User expected = userList.findUserByUsername("ccc");
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -48,9 +62,10 @@ class UserListTest {
         // TODO: add 3 users to UserList
 
         // TODO: call login() with incorrect username or incorrect password
+        User actual = userList.login("aaa", "222");
 
         // TODO: assert that the method return null
-        // assertNull(actual);
+         assertNull(actual);
     }
 
 }
